@@ -1,7 +1,7 @@
 #' Complete TDA power analyis
 #'
-#' @param value vector of values (concentration, BIBI, etc.)
-#' @param year vector of years - if multiple values for same year, values are averaged (arithmetically)
+#' @param value vector of values concentration, BIBI, etc.
+#' @param year vector of years - if multiple values for same year, values are averaged arithmetically
 #' @param site vector of sites
 #' @param trend.magnitude.threshold absolute value of ecologically meaningful trend magnitude. if not provided, defaults to 10% of average value
 #' @param power 1-B - defaults to 0.8
