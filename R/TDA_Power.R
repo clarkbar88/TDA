@@ -31,9 +31,9 @@ TDA_Power<-function(value,year,site,trend.magnitude.threshold,power=0.8,power.si
     group_by(site) %>%
     nest() %>%
     mutate(n=map(.x=data,.f=~length(.x$year)),
-           Trend=map(.x=data,.f=~TDA_kendall(.x$value,.x$year)$sen.slope),
-           ProbabilityofNegativeSlope=map(.x=data,.f=~TDA_kendall(.x$value,.x$year)$`Probability of Negative Slope`),
-           ProbabilityofPostiveSlope=map(.x=data,.f=~TDA_kendall(.x$value,.x$year)$`Probability of Positive Slope`),
+           Trend=map(.x=data,.f=~TDA_Kendall(.x$value,.x$year)$sen.slope),
+           ProbabilityofNegativeSlope=map(.x=data,.f=~TDA_Kendall(.x$value,.x$year)$`Probability of Negative Slope`),
+           ProbabilityofPostiveSlope=map(.x=data,.f=~TDA_Kendall(.x$value,.x$year)$`Probability of Positive Slope`),
            Power_to_Detect_Trend=map(.x=data,.f=~{
              X=.x$value
              n.years<-length(X)
@@ -44,7 +44,7 @@ TDA_Power<-function(value,year,site,trend.magnitude.threshold,power=0.8,power.si
                                    n.years,
                                    byrow=T)
              
-             tda.out<-plyr::adply(sample.matrix,1,function(samp.row) TDA_kendall(samp.row,years)$`Probability of Positive Slope`)$V1
+             tda.out<-plyr::adply(sample.matrix,1,function(samp.row) TDA_Kendall(samp.row,years)$`Probability of Positive Slope`)$V1
              #use probability (2/3) threshold to determine if a trend is found
              length(which(tda.out>=(2/3)))/power.simulations.n
            })) %>%

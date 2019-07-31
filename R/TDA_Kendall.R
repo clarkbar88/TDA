@@ -7,15 +7,10 @@
 #' @examples
 #' TDA_Kendall(1, 1)
 
-#requireNamespace(c('tidyverse','lubridate','EnvStats'))
-
 TDA_Kendall<-function(conc,time){
-  # if(!(trend.direction %in% c('both','positive','negative'))){
-  #   stop("trend.direction must be 'positive', 'negative', or 'both'")
-  # }
-  #require(EnvStats)
+
   if(missing(time)) time<-1:length(conc)
-  trend <- kendallTrendTest(y=conc, x=time, conf.level= .95, correct = FALSE)
+  trend <- EnvStats::kendallTrendTest(y=conc, x=time, conf.level= .95, correct = FALSE)
   n=length(time)
   V=n*(n-1)*(2*n+5)/18 # this is the same as Var.S
   nC2<-factorial(n)/(factorial(2)*factorial(n-2))
@@ -23,7 +18,8 @@ TDA_Kendall<-function(conc,time){
   
   likeli_func<-function(x){
     ifelse(x>=.99,'Virtually certain',ifelse(x>=.95,'Extremely likely',ifelse(x>=.9,'Very likely',
-                                                                              ifelse(x>=2/3,'Likely',ifelse(x>=1/3,'About as likely as not',ifelse(x>=.1,'Unlikely',
+                                                                              ifelse(x>=2/3,'Likely',ifelse(x>=1/3,'About as likely as not',
+                                                                                                            ifelse(x>=.1,'Unlikely',
                                                                                                                                                    ifelse(x>=.05,'Very unlikely',ifelse(x>=.01,'Extremely unlikely','Exceptionally unlikely'))))))))
   }
   
