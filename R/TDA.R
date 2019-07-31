@@ -6,4 +6,5 @@
 #' @importFrom plyr adply
 #' @import tidyverse
 #' @import lubridate
+#' @importFrom magrittr %>%.
 "_PACKAGE"
