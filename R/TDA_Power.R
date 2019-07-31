@@ -7,6 +7,7 @@
 #' @param power 1-B - defaults to 0.8
 #' @param power.simulation how many permutations to run to calculate power - default to 1000
 #' @return A tibble of trends and power.
+#' @export
 #' @examples
 #' TDA_Power(1, 1)
 

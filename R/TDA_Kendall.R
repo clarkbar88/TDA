@@ -4,6 +4,7 @@
 #' @param time vector of time
 #' @param site vector of sites
 #' @return A tibble of trends and power.
+#' @export
 #' @examples
 #' TDA_Kendall(1, 1)
 
