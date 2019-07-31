@@ -6,7 +6,9 @@
 #' @return A tibble of trends and power.
 #' @export
 #' @examples
-#' TDA_Kendall(1, 1)
+#' data(all_bibi_data)
+#' tmp<-subset(all_bibi_data,Site=='08BEA3312')
+#' TDA_Kendall(tmp$`Overall Score`,tmp$Year)
 
 TDA_Kendall<-function(conc,time){
 

@@ -27,5 +27,7 @@ A tibble of trends and power.
 Complete TDA power analyis
 }
 \examples{
-TDA_Power(1, 1)
+data(all_bibi_data)
+tmp<-subset(all_bibi_data,Site \%in\% c('08BEA3312','08BEA3321'))
+TDA_Kendall(tmp$`Overall Score`,tmp$Year,tmp$Sites,0.5)
 }
