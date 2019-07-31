@@ -1,3 +1,15 @@
+#' Complete TDA power analyis
+#'
+#' @param value vector of values (concentration, BIBI, etc.)
+#' @param year vector of years - if multiple values for same year, values are averaged (arithmetically)
+#' @param site vector of sites
+#' @param trend.magnitude.threshold absolute value of ecologically meaningful trend magnitude. if not provided, defaults to 10% of average value
+#' @param power 1-B - defaults to 0.8
+#' @param power.simulation how many permutations to run to calculate power - default to 1000
+#' @return A tibble of trends and power.
+#' @examples
+#' TDA_Power(1, 1)
+
 #TDA Power Function
 #value - vector of values (concentration, BIBI, etc.)
 #year - vector of years - if multiple values for same year, values are averaged (arithmetically)
@@ -6,7 +18,7 @@
 #if not provided, defaults to 10% of average value
 #power - 1-B - defaults to 0.8
 #power.simulations.n - how many permutations to run to calculate power - default to 1000
-requireNamespace(c('tidyverse','lubridate','EnvStats'))
+#requireNamespace(c('tidyverse','lubridate','EnvStats'))
 
 TDA_Power<-function(value,year,site,trend.magnitude.threshold,power=0.8,power.simulations.n=1000){
   if(missing(trend.magnitude.threshold)) trend.magnitude.threshold=0.1*mean(value) #default to 10% of average

@@ -1,12 +1,21 @@
-requireNamespace(c('tidyverse','lubridate','EnvStats'))
+#' Complete TDA power analyis
+#'
+#' @param conc vector of conc (concentration, BIBI, etc.)
+#' @param time vector of time
+#' @param site vector of sites
+#' @return A list of trends.
+#' @examples
+#' TDA_Kendall(1, 1)
 
-TDA_Kendall<-function(conc,time,kendall.conf.level=.95){
+#requireNamespace(c('tidyverse','lubridate','EnvStats'))
+
+TDA_Kendall<-function(conc,time){
   # if(!(trend.direction %in% c('both','positive','negative'))){
   #   stop("trend.direction must be 'positive', 'negative', or 'both'")
   # }
   #require(EnvStats)
   if(missing(time)) time<-1:length(conc)
-  trend <- kendallTrendTest(y=conc, x=time, conf.level= kendall.conf.level, correct = FALSE)
+  trend <- kendallTrendTest(y=conc, x=time, conf.level= .95, correct = FALSE)
   n=length(time)
   V=n*(n-1)*(2*n+5)/18 # this is the same as Var.S
   nC2<-factorial(n)/(factorial(2)*factorial(n-2))
