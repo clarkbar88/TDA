@@ -2,9 +2,8 @@
 #'
 #' TDA provides two function for implementing the trend detection analysis tool described in McBride 2018
 #' 
-#' @import EnvStats
+#' @importFrom EnvStats kendallTrendTest
 #' @importFrom plyr adply
-#' @import tidyverse
-#' @import lubridate
-#' @importFrom magrittr %>%.
+#' @import ggplot2
+#' @importFrom magrittr %>%
 "_PACKAGE"

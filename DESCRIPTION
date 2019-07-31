@@ -10,7 +10,6 @@ Depends: R (>= 3.5.0)
 Imports: 
     tidyverse,
     plyr,
-    lubridate,
     EnvStats
 Encoding: UTF-8
 LazyData: true
