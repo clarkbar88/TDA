@@ -1,9 +1,9 @@
 #' Complete TDA power analyis
 #'
-#' @param conc vector of conc concentration, BIBI, etc.
+#' @param conc vector of conc (concentration, BIBI, etc.)
 #' @param time vector of time
 #' @param site vector of sites
-#' @return A list of trends.
+#' @return A tibble of trends and power.
 #' @examples
 #' TDA_Kendall(1, 1)
 

@@ -8,13 +8,13 @@ TDA_Power(value, year, site, trend.magnitude.threshold, power = 0.8,
   power.simulations.n = 1000)
 }
 \arguments{
-\item{value}{vector of values concentration, BIBI, etc.}
+\item{value}{vector of values (concentration, BIBI, etc.)}
 
-\item{year}{vector of years - if multiple values for same year, values are averaged arithmetically}
+\item{year}{vector of years - if multiple values for same year, values are averaged (arithmetically)}
 
 \item{site}{vector of sites}
 
-\item{trend.magnitude.threshold}{absolute value of ecologically meaningful trend magnitude. if not provided, defaults to 10% of average value}
+\item{trend.magnitude.threshold}{absolute value of ecologically meaningful trend magnitude. if not provided, defaults to 10 percent of average value}
 
 \item{power}{1-B - defaults to 0.8}
 

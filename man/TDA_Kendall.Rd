@@ -7,14 +7,14 @@
 TDA_Kendall(conc, time)
 }
 \arguments{
-\item{conc}{vector of conc concentration, BIBI, etc.}
+\item{conc}{vector of conc (concentration, BIBI, etc.)}
 
 \item{time}{vector of time}
 
 \item{site}{vector of sites}
 }
 \value{
-A list of trends.
+A tibble of trends and power.
 }
 \description{
 Complete TDA power analyis
