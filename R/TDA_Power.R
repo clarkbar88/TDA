@@ -41,6 +41,7 @@ TDA_Power<-function(value,year,site,trend.magnitude.threshold,power=0.8,power.si
     mutate(Result=ifelse(Trend>=trend.magnitude.threshold&ProbabilityofPostiveSlope>=(2/3),'Increasing',
                          ifelse(Trend<=(-1*trend.magnitude.threshold)&ProbabilityofNegativeSlope>=(2/3),'Decreasing',
                                 ifelse(Power_to_Detect_Trend>=power,'Maintaining',
-                                       'Inadequate Data'))))
+                                       ifelse(ProbabilityofPostiveSlope>=(2/3)|ProbabilityofNegativeSlope>=(2/3),'Maintaining',
+                                       'Inadequate Data')))))
   
 }
