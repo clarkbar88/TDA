@@ -4,9 +4,9 @@
 \name{TDA-package}
 \alias{TDA}
 \alias{TDA-package}
-\title{TDA: (Trend Detection Analysis) some functions for implement McBride 2018}
+\title{TDA: (Trend Detection Analysis) some functions for implement McBride 2019
 \description{
-TDA provides two function for implementing the trend detection analysis tool described in McBride 2018
+TDA provides two function for implementing the trend detection analysis tool described in McBride 2019
 }
 \seealso{
 Useful links:
