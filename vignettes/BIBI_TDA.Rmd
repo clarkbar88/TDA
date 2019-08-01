@@ -20,11 +20,11 @@ library(tidyverse)
 library(lubridate)
 ```
 
-Load in data from package and select sites with at least 5 years of data
+Load in data from package and select sites with at least 8 years of data
 ```{r}
 data(all_bibi_data)
 
-sites_with_5plus_years<-all_bibi_data %>%
+sites_with_8plus_years<-all_bibi_data %>%
   group_by(Sites) %>%
   summarise(n=length(Year)) %>%
   filter(n>=8) %>%
@@ -37,8 +37,8 @@ threshold=-1*0.5
 Complete trend and power analysis
 ```{r}
 power_out<-all_bibi_data %>%
-  filter(Sites %in% sites_with_5plus_years) %>%
-  #filter(Sites %in% sites_with_5plus_years[1:5]) %>%
+  filter(Sites %in% sites_with_8plus_years) %>%
+  #filter(Sites %in% sites_with_8plus_years[1:5]) %>%
   select(Sites,Year,BIBI=`Overall Score`) %>%
   with(.,TDA_Power(value=BIBI,year=Year,site=Sites,trend.magnitude.threshold = threshold))
 ```
