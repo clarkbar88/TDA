@@ -20,10 +20,14 @@ TDA_Kendall<-function(conc,time){
   
   
   likeli_func<-function(x){
-    ifelse(x>=.99,'Virtually certain',ifelse(x>=.95,'Extremely likely',ifelse(x>=.9,'Very likely',
-                                                                              ifelse(x>=2/3,'Likely',ifelse(x>=1/3,'About as likely as not',
-                                                                                                            ifelse(x>=.1,'Unlikely',
-                                                                                                                                                   ifelse(x>=.05,'Very unlikely',ifelse(x>=.01,'Extremely unlikely','Exceptionally unlikely'))))))))
+    ifelse(x>=.99,'Virtually certain',ifelse(x>=.95,'Extremely likely',
+                                             ifelse(x>=.9,'Very likely',
+                                                    ifelse(x>=2/3,'Likely',
+                                                           ifelse(x>1/3,'About as likely as not',
+                                                                  ifelse(x>.1,'Unlikely',
+                                                                         ifelse(x>.05,'Very unlikely',
+                                                                                ifelse(x>.01,'Extremely unlikely',
+                                                                                       'Exceptionally unlikely'))))))))
   }
   
   rank_slope_zero<-approx(y=1:nC2,x=trend$slopes,xout=0)$y
