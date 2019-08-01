@@ -15,3 +15,7 @@ Encoding: UTF-8
 LazyData: true
 URL: http://github.com/clarkbar88/TDA
 RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

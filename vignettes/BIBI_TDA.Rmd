@@ -1,0 +1,64 @@
+---
+title: "BIBI_TDA"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BIBI_TDA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(TDA)
+library(tidyverse)
+library(lubridate)
+```
+
+Load in data from package and select sites with at least 5 years of data
+```{r}
+data(all_bibi_data)
+
+sites_with_5plus_years<-all_bibi_data %>%
+  group_by(Sites) %>%
+  summarise(n=length(Year)) %>%
+  filter(n>=8) %>%
+  pull(Sites)
+```
+Set up a threshold for the trend magnitude of ecological significance
+```{r}
+threshold=-1*0.5
+```
+Complete trend and power analysis
+```{r}
+power_out<-all_bibi_data %>%
+  filter(Sites %in% sites_with_5plus_years) %>%
+  #filter(Sites %in% sites_with_5plus_years[1:5]) %>%
+  select(Sites,Year,BIBI=`Overall Score`) %>%
+  with(.,TDA_Power(value=BIBI,year=Year,site=Sites,trend.magnitude.threshold = threshold))
+```
+
+Let's peak at that table
+```{r}
+knitr::kable(
+head(power_out) 
+)
+```
+
+```{r}
+power_out %>%
+  mutate(Result=factor(Result,levels=c('Decreasing','Inadequate Data','Maintaining','Increasing'),
+                       labels=c('Degrading','Inadequate Data','Maintaining','Improving'))) %>%
+  ggplot()+
+  geom_bar(aes(x=1,fill=Result),col='black',position = position_stack())+
+  theme_bw()+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.ticks.x=element_blank())
+
+```
